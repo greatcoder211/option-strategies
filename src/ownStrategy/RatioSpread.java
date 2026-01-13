@@ -22,11 +22,17 @@ class RatioSpread extends OptionStrategy {
 
     @Override
     public void setName() {
-        if(this.LongOrShort().equals(Belfort.BUY)){
-            this.name = "Long Ratio Spread";
+        if(this.LongOrShort().equals(Belfort.BUY) && this.getType().equals(OptionType.CALL)){
+            this.name = "Call Ratio Spread";
         }
-        else{
-            this.name = "Short Ratio Spread";
+        else if(this.LongOrShort().equals(Belfort.BUY) && this.getType().equals(OptionType.PUT)){
+            this.name = "Put Ratio Spread";
+        }
+        else if(this.LongOrShort().equals(Belfort.SELL) && this.getType().equals(OptionType.CALL)){
+            this.name = "Call Backspread";
+        }
+        else if(this.LongOrShort().equals(Belfort.SELL) && this.getType().equals(OptionType.PUT)){
+            this.name = "Put Backspread";
         }
     }
 
@@ -38,13 +44,14 @@ class RatioSpread extends OptionStrategy {
 
     @Override
     public List<OptionLeg> setOptionLegs(List<Double> prices) {
-        double spread = super.getOgspread();
+        double spread = super.getSpread2();
         List<OptionLeg> legs = new ArrayList<>();
         if (this.LongOrShort().equals(Belfort.BUY)) {
             if (getType().equals(OptionType.PUT)) {
                 legs.add(new OptionLeg(prices.get(0) - spread, OptionType.PUT, Belfort.SELL));
                 legs.add(new OptionLeg(prices.get(0) - spread, OptionType.PUT, Belfort.SELL));
                 legs.add(new OptionLeg(prices.get(0), OptionType.PUT, Belfort.BUY));
+
             } else {
                 legs.add(new OptionLeg(prices.get(0), OptionType.CALL, Belfort.BUY));
                 legs.add(new OptionLeg(prices.get(0) + spread, OptionType.CALL, Belfort.SELL));

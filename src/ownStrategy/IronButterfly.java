@@ -1,6 +1,7 @@
 package ownStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class IronButterfly extends OptionStrategy {
@@ -23,7 +24,7 @@ class IronButterfly extends OptionStrategy {
     @Override
     public void setName() {
         if(this.LongOrShort().equals(Belfort.BUY)){
-            this.name = "Long Iron Butterfly";
+            this.name = "Reverse Iron Butterfly";
         }
         else{
             this.name = "Iron Butterfly";
@@ -33,8 +34,11 @@ class IronButterfly extends OptionStrategy {
     @Override
     public List<Double> setThePrices(double price, List<Double> spreads, OptionStrategy o) {
         List <Double> IronButt = new ArrayList<>();
-        TwoSymmetricalSpreadStrategy beta = new TwoSymmetricalSpreadStrategy();
-        IronButt = beta.AllPrices(price, spreads, o);
+        OneSymmetricalSpreadStrategy alfa = new OneSymmetricalSpreadStrategy();
+        IronButt = alfa.AllPrices(price, spreads, o);
+        IronButt.add(price);
+        IronButt.add(price);
+        Collections.swap(IronButt, 1, 3);
         return IronButt;
     }
 

@@ -29,10 +29,10 @@ class Strangle extends OptionStrategy{
 
     @Override
     public List<Double> setThePrices(double price, List<Double> spreads, OptionStrategy o) {
-        List <Double> straddle = new ArrayList<>();
+        List <Double> strangle = new ArrayList<>();
         OneSymmetricalSpreadStrategy alfa = new OneSymmetricalSpreadStrategy();
-        straddle = alfa.AllPrices(price, spreads, o);
-        return straddle;
+        strangle = alfa.AllPrices(price, spreads, o);
+        return strangle;
     }
 
     @Override

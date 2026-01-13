@@ -23,7 +23,7 @@ class IronCondor extends OptionStrategy {
     @Override
     public void setName() {
         if(this.LongOrShort().equals(Belfort.BUY)){
-            this.name = "Long Iron Condor";
+            this.name = "Reverse Iron Condor";
         }
         else{
             this.name = "Iron Condor";

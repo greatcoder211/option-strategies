@@ -23,11 +23,17 @@ class VerticalSpread extends OptionStrategy {
 
     @Override
     public void setName() {
-        if(this.LongOrShort().equals(Belfort.BUY)){
-            this.name = "Long Vertical Spread";
+        if(this.LongOrShort().equals(Belfort.BUY) && this.getType().equals(OptionType.CALL)){
+            this.name = "Bull Call Spread";
         }
-        else{
-            this.name = "Short Vertical Spread";
+        else if(this.LongOrShort().equals(Belfort.SELL) && this.getType().equals(OptionType.CALL)){
+            this.name = "Bear Call Spread";
+        }
+        else if(this.LongOrShort().equals(Belfort.BUY) && this.getType().equals(OptionType.PUT)){
+            this.name = "Bear Put Spread";
+        }
+        else if(this.LongOrShort().equals(Belfort.SELL) && this.getType().equals(OptionType.PUT)){
+            this.name = "Bull Put Spread";
         }
     }
 

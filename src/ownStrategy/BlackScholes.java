@@ -1,7 +1,6 @@
 package ownStrategy;
 
 public class BlackScholes {
-
     /**
      * Oblicza cenę opcji Call.
      *
@@ -15,7 +14,6 @@ public class BlackScholes {
     public static double calculateCallPrice(double S, double K, double T, double r, double sigma) {
         double d1 = (Math.log(S / K) + (r + 0.5 * Math.pow(sigma, 2)) * T) / (sigma * Math.sqrt(T));
         double d2 = d1 - sigma * Math.sqrt(T);
-
         return S * cumulativeDistribution(d1) - K * Math.exp(-r * T) * cumulativeDistribution(d2);
     }
 
@@ -25,10 +23,8 @@ public class BlackScholes {
     public static double calculatePutPrice(double S, double K, double T, double r, double sigma) {
         double d1 = (Math.log(S / K) + (r + 0.5 * Math.pow(sigma, 2)) * T) / (sigma * Math.sqrt(T));
         double d2 = d1 - sigma * Math.sqrt(T);
-
         return K * Math.exp(-r * T) * cumulativeDistribution(-d2) - S * cumulativeDistribution(-d1);
     }
-
     /**
      * Dystrybuanta standardowego rozkładu normalnego (CND).
      * Używamy aproksymacji, ponieważ Java Math nie ma tej funkcji wbudowanej.

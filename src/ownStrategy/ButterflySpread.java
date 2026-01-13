@@ -1,5 +1,6 @@
 package ownStrategy;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,11 +24,14 @@ class ButterflySpread extends OptionStrategy {
 
     @Override
     public void setName() {
-        if(this.LongOrShort().equals(Belfort.BUY)){
-            this.name = "Long Butterfly Spread";
+        if(this.LongOrShort().equals(Belfort.BUY) && this.type.equals(OptionType.CALL)){
+            this.name = "Long Call Butterfly";
+        }
+        else if(this.LongOrShort().equals(Belfort.BUY) && this.type.equals(OptionType.PUT)){
+            this.name = "Long Put Butterfly";
         }
         else{
-            this.name = "Short Butterfly Spread";
+            this.name = "Inverse Butterfly";
         }
     }
 
@@ -48,14 +52,14 @@ class ButterflySpread extends OptionStrategy {
         List <OptionLeg> legs = new ArrayList<>();
         if(this.LongOrShort().equals(Belfort.BUY)){
             legs.add(new OptionLeg(prices.get(0), type, Belfort.BUY));
-            legs.add(new OptionLeg(super.getPrice(), type, Belfort.SELL));
-            legs.add(new OptionLeg(super.getPrice(), type, Belfort.SELL));
+            legs.add(new OptionLeg(prices.get(1), type, Belfort.SELL));
+            legs.add(new OptionLeg(prices.get(2), type, Belfort.SELL));
             legs.add(new OptionLeg(prices.get(3), type, Belfort.BUY));
         }
         else{
             legs.add(new OptionLeg(prices.get(0), type, Belfort.SELL));
-            legs.add(new OptionLeg(super.getPrice(), type, Belfort.BUY));
-            legs.add(new OptionLeg(super.getPrice(), type, Belfort.BUY));
+            legs.add(new OptionLeg(prices.get(1), type, Belfort.BUY));
+            legs.add(new OptionLeg(prices.get(2), type, Belfort.BUY));
             legs.add(new OptionLeg(prices.get(3), type, Belfort.SELL));
         }
         return legs;

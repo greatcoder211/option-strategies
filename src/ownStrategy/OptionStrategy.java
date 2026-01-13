@@ -8,8 +8,7 @@ public abstract class OptionStrategy {
     private String name;
     private Belfort ls;
     SymmetricalSpreadStrategy spread;
-    private double ogspread;
-    private static List<String> companyTypes = new ArrayList<>();
+    private double spread2;
     private OptionType type;
     private double price;
     private double timeToExpiry;
@@ -44,17 +43,15 @@ public abstract class OptionStrategy {
 
     public void setType(OptionType type) { this.type = type; }
 
-    public double getOgspread() { return ogspread; }
-
-    public void setOgspread(double ogspread) { this.ogspread = ogspread; }
-
     public abstract boolean getCP();
+
+    public double getSpread2() { return spread2; }
+
+    public void setSpread2(double spread2) { this.spread2 = spread2; }
 
     public abstract void setName();
 
     public void setLs(Belfort ls) { this.ls = ls; }
-
-    protected void addCompanyType(String type) { companyTypes.add(type); }
 
     public void setTimeToExpiry(double timeToExpiry) {this.timeToExpiry = timeToExpiry;}
 
@@ -106,20 +103,8 @@ public abstract class OptionStrategy {
         return res;
     }
 
-    public static List<String> getCompanyTypes() { return companyTypes; }
-
-    static{
-        companyTypes.add("AAPL");
-        companyTypes.add("TSLA");
-        companyTypes.add("MSFT");
-        companyTypes.add("GOOGL");
-        companyTypes.add("AMZN");
-        companyTypes.add("NVDA");
-        companyTypes.add("CDR.WA");
-        companyTypes.add("PKO.WA");
-        companyTypes.add("KGH.WA");
-        companyTypes.add("BTC-USD");
-        companyTypes.add("ETH-USD");
+    public static double function(OptionStrategy o, List<OptionLeg> legs, double price, double price2) {
+        return o.netPremium(legs, price) + o.calculateProfits(legs, price2);
     }
 }
 
