@@ -1,9 +1,9 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class TwoSymmetricalSpreadStrategy implements SymmetricalSpreadStrategy {
+public class TwoSymmetricalSpreadStrategy implements SymmetricalSpreadStrategy {
     public List<Double> AllPrices(double price, List<Double> spreadValues, OptionStrategy o){
         List<Double> prices = new ArrayList<>();
         Double d1 = price - spreadValues.get(1);

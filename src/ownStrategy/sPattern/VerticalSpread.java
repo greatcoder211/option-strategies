@@ -1,9 +1,9 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class VerticalSpread extends OptionStrategy {
+public class VerticalSpread extends OptionStrategy {
     private String name;
     private final int spreadNumber = 1;
     private OptionType type;
@@ -11,6 +11,8 @@ class VerticalSpread extends OptionStrategy {
     public VerticalSpread(String name, Belfort LS) {
         super(name, LS);
     }
+
+    public VerticalSpread() {}
 
     @Override
     public boolean getCP() { return true; }

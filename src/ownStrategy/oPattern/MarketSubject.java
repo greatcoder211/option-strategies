@@ -1,5 +1,6 @@
 //let's make it big
-package ownStrategy;
+package ownStrategy.oPattern;
+import ownStrategy.sPattern.*;
 
 public interface MarketSubject {
     public void registerObserver(Observer o);

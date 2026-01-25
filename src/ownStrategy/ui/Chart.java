@@ -1,4 +1,7 @@
-package ownStrategy;
+package ownStrategy.ui;
+
+import ownStrategy.sPattern.OptionLeg;
+import ownStrategy.sPattern.OptionStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

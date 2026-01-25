@@ -1,16 +1,18 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class IronButterfly extends OptionStrategy {
+public class IronButterfly extends OptionStrategy {
     private String name;
     private final int spreadNumber = 2;
 
     public IronButterfly(String name, Belfort LS) {
         super(name, LS);
     }
+
+    public IronButterfly() {}
 
     @Override
     public boolean getCP() { return false; }

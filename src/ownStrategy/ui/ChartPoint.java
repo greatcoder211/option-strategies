@@ -1,4 +1,4 @@
-package ownStrategy;
+package ownStrategy.ui;
 
 public class ChartPoint {
     double price;

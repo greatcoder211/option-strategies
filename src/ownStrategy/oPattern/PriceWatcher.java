@@ -1,12 +1,15 @@
 //Subject object class
 //PriceWatcher- jak sama nazwa wskazuje- obserwuje API
-package ownStrategy;
+package ownStrategy.oPattern;
+import ownStrategy.network.AlphaVantageStock;
+import ownStrategy.sPattern.*;
+
 import java.util.ArrayList;
 import java.util.List;
-public class PriceWatcher implements MarketSubject{
+public class PriceWatcher implements MarketSubject {
     private List<Observer> observers = new ArrayList<>();
     private String ticker;
-    private double lastPrice = 0;
+    private double lastPrice;
     private double currentPrice;
     public PriceWatcher(String ticker) {
         this.ticker = ticker;
@@ -19,6 +22,9 @@ public class PriceWatcher implements MarketSubject{
         if(lastPrice != currentPrice){
             lastPrice = currentPrice;
             notifyObservers();
+        }
+        else{
+            System.out.println("Price not changed.");
         }
     }
     @Override

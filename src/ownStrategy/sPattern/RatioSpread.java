@@ -1,9 +1,9 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class RatioSpread extends OptionStrategy {
+public class RatioSpread extends OptionStrategy {
     private String name;
     private final int spreadNumber = 1;
 

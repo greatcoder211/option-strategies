@@ -1,4 +1,4 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 public enum StrategyType {
     Butterfly_Spread(ButterflySpread.class),

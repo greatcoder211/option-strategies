@@ -1,15 +1,17 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Strangle extends OptionStrategy{
+public class Strangle extends OptionStrategy {
     private String name;
     private final int spreadNumber = 1;
 
     public Strangle(String name, Belfort LS) {
         super(name, LS);
     }
+
+    public Strangle(){}
 
     @Override
     public boolean getCP() { return false; }

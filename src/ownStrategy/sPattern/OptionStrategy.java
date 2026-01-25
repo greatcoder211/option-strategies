@@ -1,7 +1,7 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
+import ownStrategy.finance.BlackScholes;
+
 import java.util.List;
 
 public abstract class OptionStrategy {
@@ -19,6 +19,7 @@ public abstract class OptionStrategy {
         this.name = name;
         this.ls = ls;
     }
+    public OptionStrategy(){}
 
     //glowna metoda
     public List<Double> setThePrices(double price, List<Double> spreads, OptionStrategy o) {

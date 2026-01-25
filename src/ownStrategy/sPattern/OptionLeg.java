@@ -1,4 +1,4 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 public class OptionLeg {
     private double strikePrice;

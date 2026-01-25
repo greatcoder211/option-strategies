@@ -1,15 +1,17 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class IronCondor extends OptionStrategy {
+public class IronCondor extends OptionStrategy {
     private String name;
     private final int spreadNumber = 2;
 
     public IronCondor(String name, Belfort LS) {
         super(name, LS);
     }
+
+    public IronCondor(){}
 
     @Override
     public boolean getCP() { return false; }

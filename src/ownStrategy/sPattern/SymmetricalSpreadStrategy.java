@@ -1,7 +1,7 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
 import java.util.List;
 
-interface SymmetricalSpreadStrategy {
+public interface SymmetricalSpreadStrategy {
     List<Double> AllPrices(double price, List<Double> spreadValues, OptionStrategy strategy);
 }

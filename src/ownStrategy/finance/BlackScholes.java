@@ -1,4 +1,4 @@
-package ownStrategy;
+package ownStrategy.finance;
 
 public class BlackScholes {
     /**

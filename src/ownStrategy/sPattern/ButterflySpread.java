@@ -1,11 +1,10 @@
-package ownStrategy;
+package ownStrategy.sPattern;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class ButterflySpread extends OptionStrategy {
+public class ButterflySpread extends OptionStrategy {
     private String name;
     private OptionType type;
     private final int spreadNumber = 1;
@@ -13,6 +12,8 @@ class ButterflySpread extends OptionStrategy {
     public ButterflySpread(String name, Belfort LS) {
         super(name, LS);
     }
+
+    public ButterflySpread() {}
 
     public int getSpreadNumber(){ return this.spreadNumber; }
 
