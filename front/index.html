@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Option Strategy Payoff</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; margin-bottom: 5px; }
+        p { color: #666; font-size: 0.9em; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+<h1 id="strategy-title">Loading Strategy...</h1>
+<p>Payoff Diagram at Expiry</p>
+
+<div class="chart-container">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    fetch('http://localhost:8000/api/data')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Received Data:", data);
+
+            // 1. USTAWIAMY TYTUŁ (bierzemy go z "paczki" wysłanej przez Javę)
+            // Jeśli nazwa nie przyszła, używamy domyślnej
+            document.getElementById('strategy-title').innerText = data.strategyName || "Unknown Strategy";
+
+            // 2. PRZYGOTOWUJEMY PUNKTY
+            // Teraz punkty są ukryte pod kluczem 'chartPoints'
+            const points = data.chartPoints.map(item => {
+                return { x: item.price, y: item.profit };
+            });
+
+            // 3. RYSUJEMY WYKRES (wszystko po angielsku)
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Profit / Loss (P/L)',
+                        data: points,
+                        borderColor: '#0056b3', // Profesjonalny granatowy
+                        backgroundColor: 'rgba(0, 86, 179, 0.1)',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return ` P/L: ${context.parsed.y.toFixed(2)} $`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: 'Stock Price at Expiry ($)' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Profit / Loss ($)' },
+                            grid: {
+                                color: (ctx) => ctx.tick.value === 0 ? '#333' : '#e5e5e5', // Mocna linia zero
+                                lineWidth: (ctx) => ctx.tick.value === 0 ? 2 : 1
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('strategy-title').innerText = "Connection Error";
+            alert("Could not load data. Is the Java server running?");
+        });
+</script>
+</body>
+</html>
