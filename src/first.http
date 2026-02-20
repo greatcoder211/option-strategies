@@ -1,0 +1,45 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST http://localhost:8080/first
+Content-Type: application/json
+
+{
+  "spotPrice": 150.0,
+  "volatility": 0.3,
+  "riskFreeRate": 0.05,
+  "timeToExpiry": 0.08,
+  "legs": [
+    {
+      "strikePrice": 140.0,
+      "type": "CALL",
+      "belfort": "BUY"
+    },
+    {
+      "strikePrice": 160.0,
+      "type": "CALL",
+      "belfort": "SELL"
+    }
+  ]
+}
+
+
+### Apple- correct ticker
+GET http://localhost:8080/companies?key=aapl
+
+### Microsoft- correct ticker
+GET http://localhost:8080/companies?key=microsoft
+
+### Test błędu (zły ticker - powinien wyrzucić Twój wyjątek)
+GET http://localhost:8080/companies?key=aaabbbajsk
+
+### Test błędu (ticker too short- only one character)
+GET http://localhost:8080/companies?key=x
+
+### Key to test = to jest test
+GET http://localhost:8080/companies?key=test
+
+### Should work
+GET http://localhost:8080/companies?key=apple

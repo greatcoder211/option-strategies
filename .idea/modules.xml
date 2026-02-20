@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JavaCw.iml" filepath="$PROJECT_DIR$/JavaCw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/option-strategy-app.iml" filepath="$PROJECT_DIR$/option-strategy-app.iml" />
     </modules>
   </component>
 </project>

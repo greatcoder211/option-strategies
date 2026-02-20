@@ -1,6 +1,6 @@
 ### IntelliJ IDEA ###
 out/
-!**/src/main/**/out/
+!src/main/**/out/
 !**/src/test/**/out/
 .kotlin
 
@@ -13,7 +13,7 @@ out/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
+!src/main/**/bin/
 !**/src/test/**/bin/
 
 ### NetBeans ###
@@ -28,3 +28,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+target/
+*.iml
+.idea/
+src/ZIPs/
